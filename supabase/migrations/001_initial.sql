@@ -58,4 +58,3 @@ create policy "public media" on storage.objects for select using(bucket_id='medi
 create policy "admin media" on storage.objects for all to authenticated using(bucket_id='media' and public.is_admin()) with check(bucket_id='media' and public.is_admin());
 -- Create an email/password user in Authentication, then explicitly grant admin:
 -- insert into public.admins(id) values ('AUTH_USER_UUID');
-

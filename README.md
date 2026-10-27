@@ -35,6 +35,7 @@ insert into public.admins(id) values ('UUID_DO_USUARIO');
 ## Publicar na Vercel
 
 1. Importe `caiosobrinho93/state-marcenaria-v2` na Vercel.
+   A branch padrão enviada é `codex/state-marcenaria`; selecione-a como Production Branch.
 2. Framework: **Next.js**, root directory: **./**, Node: **22.x**. Os comandos padrão de instalação e build são suficientes.
 3. Configure, nos ambientes apropriados:
    - `NEXT_PUBLIC_SITE_URL`: URL canônica HTTPS do site (sem barra final).
@@ -79,4 +80,3 @@ Os arquivos visuais foram copiados de `Desktop/projeto-marcenaria`; os originais
 - Alteração de senha autenticada está no painel. Recuperação de conta é operada pelo responsável no Supabase Auth.
 
 Referências técnicas: [Next.js deployment](https://nextjs.org/docs/app/getting-started/deploying), [Supabase SSR](https://supabase.com/docs/guides/auth/server-side), [Vercel Next.js](https://vercel.com/docs/frameworks/full-stack/nextjs).
-

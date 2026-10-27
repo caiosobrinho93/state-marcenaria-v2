@@ -116,4 +116,3 @@ test("Movimento reduzido e formulário com validação nativa", async ({
     await name.evaluate((e: HTMLInputElement) => e.checkValidity()),
   ).toBeTruthy();
 });
-

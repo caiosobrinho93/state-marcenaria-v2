@@ -21,4 +21,3 @@ Execute em ambiente de teste com dois usuários: administrador associado à tabe
 15. Na URL Vercel final, verificar cookies HTTPS, cabeçalhos, sitemap e metadados. Executar Lighthouse novamente com conteúdo real.
 
 Registrar data, ambiente, conta de teste (sem senha), resultado e evidência em TEST_REPORT.md. Não usar dados reais de clientes para testes.
-

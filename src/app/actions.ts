@@ -226,4 +226,3 @@ export async function getDefaultSettings() {
   await admin();
   return defaults;
 }
-

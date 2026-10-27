@@ -8,7 +8,8 @@
 - [x] TypeScript, lint e build aprovados; 8 testes Playwright públicos aprovados.
 - [x] Auditorias Lighthouse desktop/mobile e axe, evidências em reports e TEST_REPORT.md.
 - [ ] Validar integração real após receber Supabase e conta administrativa.
-- [ ] Publicação depende de acesso GitHub/Vercel e configuração comercial.
+- [x] Código enviado ao GitHub na branch `codex/state-marcenaria` (branch padrão do repositório novo).
+- [ ] Importar o repositório na Vercel e configurar variáveis de ambiente.
 
 ## Limites do escopo entregue
 - Apenas três frames otimizados: sem sequência frame-by-frame, para reduzir o custo de carregamento. Ambientes são selecionáveis por abas; a rolagem controla parallax e profundidade no desktop.
