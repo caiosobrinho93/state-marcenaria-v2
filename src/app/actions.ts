@@ -11,23 +11,39 @@ const media = z
     (v) => !v || v.startsWith("/images/") || /^https:\/\//.test(v),
     "Use uma URL HTTPS.",
   );
-const entrySchema = z.object({
-  id: z.uuid().optional(),
-  kind: z.enum(["material", "project", "category", "manufacturer"]),
-  title: z.string().trim().min(2).max(160),
-  category: text,
-  description: text,
-  image: media,
-  images: z.array(media).max(12),
-  brand: text,
-  reference: text,
-  specifications: text,
-  variations: text,
-  availability: z.enum(["consultar", "disponivel", "indisponivel"]),
-  featured: z.boolean(),
-  published: z.boolean(),
-  position: z.number().int().min(0).max(99999),
-});
+const entrySchema = z
+  .object({
+    id: z.uuid().optional(),
+    kind: z.enum([
+      "material",
+      "project",
+      "category",
+      "manufacturer",
+      "testimonial",
+    ]),
+    title: z.string().trim().min(2).max(160),
+    category: text,
+    description: text,
+    image: media,
+    images: z.array(media).max(12),
+    brand: text,
+    reference: text,
+    specifications: text,
+    variations: text,
+    availability: z.enum(["consultar", "disponivel", "indisponivel"]),
+    featured: z.boolean(),
+    published: z.boolean(),
+    position: z.number().int().min(0).max(99999),
+  })
+  .refine(
+    (value) =>
+      value.kind !== "testimonial" || value.description.trim().length >= 10,
+    {
+      path: ["description"],
+      message:
+        "Informe o depoimento real autorizado, com pelo menos 10 caracteres.",
+    },
+  );
 function message(error: unknown) {
   return error instanceof Error
     ? error.message
@@ -154,12 +170,10 @@ export async function upload(form: FormData) {
     )
       throw new Error("Formato permitido: JPEG, PNG ou WebP.");
     const path = `${crypto.randomUUID()}.${extension}`;
-    const { error } = await client.storage
-      .from("media")
-      .upload(path, bytes, {
-        contentType: `image/${extension === "jpg" ? "jpeg" : extension}`,
-        upsert: false,
-      });
+    const { error } = await client.storage.from("media").upload(path, bytes, {
+      contentType: `image/${extension === "jpg" ? "jpeg" : extension}`,
+      upsert: false,
+    });
     if (error) throw new Error("Falha no upload. Verifique o bucket media.");
     return {
       url: client.storage.from("media").getPublicUrl(path).data.publicUrl,

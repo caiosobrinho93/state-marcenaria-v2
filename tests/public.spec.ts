@@ -8,7 +8,8 @@ for (const width of [360, 390, 768, 1024, 1440]) {
     const errors: string[] = [];
     page.on("pageerror", (e) => errors.push(e.message));
     await page.goto("/");
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    await expect(page.locator('.journey')).toHaveAttribute('data-motion','scroll');
+    await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName(
       "Ambientes que expressam sua essência.",
     );
     expect(
@@ -26,22 +27,19 @@ for (const width of [360, 390, 768, 1024, 1440]) {
         page.getByRole("button", { name: "Abrir menu" }),
       ).toBeVisible();
     }
-    await page.getByRole("tab", { name: /Dormitórios & closets/ }).click();
-    await expect(page.getByRole("tabpanel")).toContainText(
+    await page.getByRole("button", { name: /Dormitórios & closets/ }).click();
+    await expect(page.locator('#craft-panel-1')).toContainText(
       "O seu lugar de desacelerar.",
     );
-    await page
-      .getByRole("tab", { name: /Dormitórios & closets/ })
-      .press("ArrowRight");
-    await expect(
-      page.getByRole("tab", { name: /Salas & painéis/ }),
-    ).toBeFocused();
+    await page.getByRole('button',{name:/Salas & painéis/}).focus();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#craft-panel-2')).toBeVisible();
     await page.getByRole("button", { name: "Puxadores", exact: true }).click();
     await page
       .getByRole("textbox", { name: "Buscar materiais" })
       .fill("carvalho");
     await expect(
-      page.getByText("Sua escolha começa com uma conversa."),
+      page.getByText("O primeiro detalhe é a sua escolha."),
     ).toBeVisible();
     const contact = page.getByRole("link", { name: "Conversar pelo WhatsApp" });
     await expect(contact).toHaveAttribute(

@@ -1,0 +1,525 @@
+/* Readable type and explicit controls. The approved scroll hero is untouched. */
+.site-v2 {
+  --control-radius: 12px;
+}
+.site-v2 .site-header[data-past-hero="true"] {
+  background: #182012f5;
+  border-bottom: 1px solid #87987344;
+}
+.site-v2 .nav a {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 14px 0;
+}
+.site-v2 .header-cta {
+  font-size: 15px;
+  min-height: 50px;
+}
+.site-v2 .section .eyebrow {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  margin-bottom: 22px;
+}
+.site-v2 .section p:not(.eyebrow) {
+  font-size: 18px;
+  line-height: 1.75;
+}
+.site-v2 .section-heading > p {
+  max-width: 430px;
+}
+.site-v2 .about-copy > p:not(.eyebrow) {
+  font-size: 19px;
+  line-height: 1.8;
+  max-width: 580px;
+}
+.site-v2 .principles h3 {
+  font-size: 23px;
+  margin-bottom: 12px;
+}
+.site-v2 .principles p {
+  font-size: 17px;
+  line-height: 1.7;
+}
+.site-v2 .principles > div > span {
+  font-size: 15px;
+}
+.site-v2 .principles > div {
+  padding: 26px 0;
+}
+.site-v2 .image-caption {
+  font-size: 14px;
+  letter-spacing: 0.6px;
+  line-height: 1.5;
+}
+.site-v2 .studio-aside p {
+  font-size: 17px;
+}
+.site-v2 .craft-number {
+  font-size: 15px;
+}
+.site-v2 .craft-panel h4 {
+  font-size: 23px;
+}
+.site-v2 .craft-note span {
+  color: #4f5c3c;
+  font:
+    600 14px/1.5 Arial,
+    sans-serif;
+  letter-spacing: 0.6px;
+}
+.site-v2 .space-info h3 {
+  font-size: 34px;
+}
+.site-v2 .space-info p {
+  font-size: 17px;
+}
+.site-v2 .space-tag {
+  font:
+    600 13px/1.4 Arial,
+    sans-serif;
+  letter-spacing: 0.6px;
+}
+.site-v2 .space-caption {
+  font:
+    13px/1.5 Arial,
+    sans-serif;
+  letter-spacing: 0;
+  padding-top: 6px;
+}
+.site-v2 .signature-top {
+  margin-bottom: 30px;
+}
+.site-v2 .signature-top svg {
+  width: 34px;
+  height: 34px;
+}
+.site-v2 .signature-card h3 {
+  font-size: 28px;
+  max-width: none;
+}
+.site-v2 .signature-card p {
+  font-size: 17px;
+  max-width: none;
+}
+.site-v2 .process-intro .eyebrow {
+  max-width: 400px;
+}
+.site-v2 .process-card h3 {
+  font-size: 26px;
+}
+.site-v2 .process-card p {
+  font-size: 17px;
+}
+.site-v2 .review-pending {
+  font:
+    600 13px/1.5 Arial,
+    sans-serif;
+  letter-spacing: 0.5px;
+  padding: 10px 14px;
+}
+.site-v2 .review-symbol span {
+  font:
+    14px/1.8 Arial,
+    sans-serif;
+  letter-spacing: 0.6px;
+}
+.site-v2 .testimonial-card figcaption strong {
+  font-size: 17px;
+}
+.site-v2 .testimonial-card figcaption div > span {
+  font-size: 15px;
+}
+.site-v2 .catalog-tools {
+  gap: 24px;
+  margin-bottom: 22px;
+}
+.site-v2 .search-field {
+  border-radius: var(--control-radius);
+  background: #f8f6ec;
+  padding: 0 18px;
+  min-height: 58px;
+  max-width: 650px;
+  border: 1px solid #8c977c;
+}
+.site-v2 .search-field input {
+  font-size: 17px;
+  padding: 16px 0;
+  border-radius: var(--control-radius);
+}
+.site-v2 .search-field input::placeholder {
+  font-size: 16px;
+  color: #5a654b;
+}
+.site-v2 .catalog-tools > span {
+  font-size: 16px;
+  gap: 10px;
+}
+.site-v2 .filter-row {
+  gap: 12px;
+  margin: 24px 0 36px;
+}
+.site-v2 .filter-row button {
+  font-size: 16px;
+  min-height: 48px;
+  padding: 12px 20px;
+}
+.site-v2 .catalog-note {
+  font-size: 15px;
+  line-height: 1.7;
+  gap: 24px;
+}
+.site-v2 .catalog-note a {
+  font-size: 16px;
+  min-height: 48px;
+  padding: 10px 16px;
+  border: 1px solid #8b977a;
+  border-radius: var(--control-radius);
+}
+.site-v2 .card-info .eyebrow {
+  font-size: 14px;
+}
+.site-v2 .card-info h3 {
+  font-size: 25px;
+}
+.site-v2 .card-bottom {
+  font-size: 15px;
+}
+.site-v2 .badge {
+  font-size: 14px;
+  border-radius: 8px;
+}
+.site-v2
+  :is(
+    .material-card,
+    .project-card,
+    .portfolio-placeholder,
+    .detail-dialog,
+    .empty-state,
+    .notice
+  ) {
+  border-radius: var(--control-radius);
+}
+.site-v2 :is(.material-card, .project-card, .portfolio-placeholder) {
+  overflow: hidden;
+}
+.site-v2 .about-image {
+  border-radius: 180px 180px 12px 12px;
+}
+.site-v2 .material-palette span {
+  border-radius: 12px;
+}
+.site-v2 .material-palette span:first-child,
+.site-v2 .material-palette span:last-child {
+  border-radius: 90px 90px 12px 12px;
+}
+.site-v2 .section .button {
+  font-size: 16px;
+  min-height: 54px;
+  padding: 15px 24px;
+  border-radius: var(--control-radius);
+}
+.site-v2
+  .section
+  :is(.empty-state a, .underlined, .craft-panel a, .process-link) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 14px 22px;
+  min-height: 52px;
+  border: 1px solid #637454;
+  border-radius: var(--control-radius);
+  background: #35452a;
+  color: #f7f5e8;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.site-v2
+  .section
+  :is(.empty-state a, .underlined, .craft-panel a, .process-link):hover {
+  background: #465b38;
+}
+.site-v2 .review-invitation a {
+  font-size: 16px;
+  line-height: 1.5;
+  background: #e6d9a7;
+  color: #28361e;
+  padding: 14px 20px;
+  border: 1px solid #e6d9a7;
+  border-radius: var(--control-radius);
+  min-height: 52px;
+}
+.site-v2 .contact .button.gold {
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 16px 22px;
+  border-radius: var(--control-radius);
+}
+.site-v2 .contact-form {
+  padding-left: 40px;
+}
+.site-v2 .contact-form h3 {
+  font-size: 34px;
+  margin-bottom: 28px;
+}
+.site-v2 .contact-form .notice {
+  margin: 0 0 32px;
+  padding: 20px 22px;
+  font-size: 16px;
+  line-height: 1.75;
+  border: 1px solid #aab79780;
+  background: #404e33;
+  color: #f0f3e8;
+  border-radius: var(--control-radius);
+}
+.site-v2 .contact-form label {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #f5f5eb;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.site-v2 .contact-form .form-grid {
+  gap: 20px;
+}
+.site-v2 .contact-form :is(input:not([type="checkbox"]), textarea) {
+  display: block;
+  width: 100%;
+  padding: 15px 17px;
+  min-height: 56px;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fffef5;
+  background: #202c18;
+  border: 1px solid #9bab86;
+  border-radius: var(--control-radius);
+  box-shadow: inset 0 1px 3px #0002;
+}
+.site-v2 .contact-form textarea {
+  min-height: 154px;
+}
+.site-v2 .contact-form :is(input, textarea)::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: #bfcbb1;
+  opacity: 1;
+}
+.site-v2 .contact-form :is(input, textarea):focus-visible {
+  border-color: #eab308;
+  outline: 2px solid #eab308;
+  outline-offset: 3px;
+}
+.site-v2 .contact-form .checkbox {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.75;
+  gap: 14px;
+  align-items: flex-start;
+  margin: 4px 0 28px;
+}
+.site-v2 .contact-form .checkbox input {
+  width: 21px;
+  height: 21px;
+  min-width: 21px;
+  min-height: 21px;
+  margin-top: 4px;
+  padding: 0;
+}
+.site-v2 .contact-form .form-disclosure {
+  font-size: 15px;
+  line-height: 1.75;
+  margin-top: 22px;
+  color: #d0d9c4;
+}
+.site-v2 .contact-form [role="status"] {
+  font-size: 16px;
+}
+.site-v2 .contact-form .submit {
+  border-radius: var(--control-radius);
+  min-height: 56px;
+  font-size: 17px;
+}
+.site-v2 .footer-top p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+.site-v2 .footer-top > a:last-child {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 25px;
+  min-height: 56px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #25311c;
+  background: #e8d9a4;
+  border: 1px solid #e8d9a4;
+  border-radius: var(--control-radius);
+  width: auto;
+}
+.site-v2 .footer-top > a:last-child:hover {
+  background: #f3e5b5;
+}
+.site-v2 .footer-bottom {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  letter-spacing: 0;
+  gap: 20px;
+  align-items: center;
+}
+.site-v2 .footer-bottom a {
+  padding: 12px 16px;
+  min-height: 48px;
+  border: 1px solid #718161;
+  border-radius: var(--control-radius);
+}
+@media (max-width: 1100px) {
+  .site-v2 .nav {
+    display: none;
+    position: absolute;
+    top: 92px;
+    left: 0;
+    right: 0;
+    padding: 22px 6%;
+    flex-direction: column;
+    gap: 4px;
+    background: #192112fa;
+    border-bottom: 1px solid #6b7b56;
+  }
+  .site-v2 .nav.open {
+    display: flex;
+  }
+  .site-v2 .nav a {
+    font-size: 18px;
+  }
+  .site-v2 .menu-toggle {
+    display: inline-flex !important;
+  }
+  .site-v2 .header-cta {
+    margin-left: auto;
+    margin-right: 16px;
+  }
+  .site-v2 .section-heading {
+    align-items: flex-start;
+  }
+  .site-v2 .section-heading > p {
+    max-width: 330px;
+  }
+  .site-v2 .contact-form {
+    padding-left: 24px;
+  }
+}
+@media (max-width: 767px) {
+  .site-v2 .nav {
+    top: 82px;
+  }
+  .site-v2 .header-cta {
+    font-size: 14px;
+    padding: 10px 14px;
+    gap: 10px;
+    min-height: 46px;
+    margin-right: 10px;
+  }
+  .site-v2 .section .eyebrow {
+    font-size: 14px;
+    letter-spacing: 0.6px;
+    line-height: 1.7;
+  }
+  .site-v2 .section p:not(.eyebrow),
+  .site-v2 .about-copy > p:not(.eyebrow) {
+    font-size: 17px;
+    line-height: 1.75;
+  }
+  .site-v2 .signature-card p,
+  .site-v2 .process-card p,
+  .site-v2 .space-info p {
+    font-size: 16px;
+  }
+  .site-v2 .section-heading > p {
+    max-width: none;
+  }
+  .site-v2 .signature-card h3 {
+    font-size: 27px;
+  }
+  .site-v2 .craft-toggle h3 {
+    font-size: 22px;
+  }
+  .site-v2 .craft-number {
+    display: none;
+  }
+  .site-v2 .craft-panel {
+    padding-left: 0;
+  }
+  .site-v2 .search-field {
+    padding: 0 14px;
+  }
+  .site-v2 .search-field input,
+  .site-v2 .search-field input::placeholder {
+    font-size: 16px;
+  }
+  .site-v2 .filter-row {
+    gap: 10px;
+  }
+  .site-v2 .filter-row button {
+    font-size: 15px;
+    padding: 11px 14px;
+  }
+  .site-v2 .catalog-note {
+    font-size: 15px;
+  }
+  .site-v2 .about-image {
+    border-radius: 140px 140px 12px 12px;
+  }
+  .site-v2 .material-palette span:first-child,
+  .site-v2 .material-palette span:last-child {
+    border-radius: 50px 50px 12px 12px;
+  }
+  .site-v2 .contact-form {
+    padding: 35px 0 0;
+  }
+  .site-v2 .contact-form h3 {
+    font-size: 31px;
+  }
+  .site-v2 .contact-form .notice {
+    padding: 18px;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+  .site-v2 .contact-form .form-grid {
+    gap: 0;
+  }
+  .site-v2 .contact-form label {
+    font-size: 17px;
+  }
+  .site-v2 .contact-form .checkbox {
+    font-size: 16px;
+  }
+  .site-v2 .contact .button.gold {
+    font-size: 16px;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+  .site-v2 .section .form-disclosure {
+    font-size: 15px;
+  }
+  .site-v2 .review-invitation a {
+    font-size: 16px;
+    gap: 14px;
+    align-items: center;
+  }
+  .site-v2 .footer-top p {
+    font-size: 17px;
+  }
+  .site-v2 .footer-bottom {
+    font-size: 14px;
+  }
+}

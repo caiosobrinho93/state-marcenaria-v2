@@ -1,4 +1,17 @@
-# Relatório de validação — 27/10/2026
+# Validação atual — 30/10/2026
+
+- Build de produção Next.js aprovado após revisão de legibilidade.
+- 13 testes Playwright aprovados (36,1 s), com o servidor local de desenvolvimento: navegação/acessibilidade em 360, 390, 768, 1024 e 1440px; sequência de imagens em 390/1440px; retorno aos frames 1, 31 e 60 com comparação dos pixels; modo de movimento reduzido; pausa/retomada da faixa em loop; cards e convite de depoimentos.
+- Nenhuma violação axe nos estados públicos testados. Corrigidos contraste do texto "SOB MEDIDA" e cabeçalho transparente sobre seções claras.
+- Inspeção adicional em 360, 390, 768, 1024 e 1864px: sem overflow; textos principais 17–19px, navegação 16–18px, rótulos 14px, consentimento 16px, campos/busca com raio de 12px, borda de 1px e margem real de 30–32px após o aviso.
+- Removidos micro-rótulos dos cards. Inputs com label destacado, fundo próprio, borda e placeholder secundário. CTAs editoriais e rodapé com aparência de botões.
+- Arquivos da hero aprovados preservados nesta revisão: scroll-journey.tsx SHA256 BA6DEFB9201696230023C7A003966ACDA4C8F8C63623BDCD4B5628B4AC3D1220; redesign.css SHA256 8645ACE3794D4DEBD943A34A0BEF0E257803DBB513254FD9D2F3ED7FF00FB513.
+- Depoimentos reais não fornecidos: seção vazia identificada, sem nomes/avaliações inventados. CRUD de depoimentos/migração 002 aguarda Supabase, como as demais integrações.
+- Capturas e script de inspeção em reports/readability e scripts/check-readability.mjs.
+
+**As métricas Lighthouse abaixo pertencem à versão de 27/10; não são medições do layout atual.** Não foi realizada nova auditoria Lighthouse nesta revisão de tipografia.
+
+# Histórico de validação — 27/10/2026
 
 ## Ambiente
 Windows; Node 24.20.0; Next.js 16.4.3; Chrome headless; build de produção em `http://localhost:3000`. Playwright 1.64.1, axe 4.14.0, Lighthouse 13.5.0. Supabase ainda não foi criado pelo proprietário. Não foram utilizados dados fictícios de catálogo ou clientes.

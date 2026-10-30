@@ -34,6 +34,7 @@ const tabs = [
   "Visão geral",
   "Materiais",
   "Portfólio",
+  "Depoimentos",
   "Categorias",
   "Fabricantes",
   "Solicitações",
@@ -43,6 +44,7 @@ const tabs = [
 const kinds: Record<string, Entry["kind"]> = {
   Materiais: "material",
   Portfólio: "project",
+  Depoimentos: "testimonial",
   Categorias: "category",
   Fabricantes: "manufacturer",
 };
@@ -249,9 +251,18 @@ export default function AdminPanel({
                 <h2>
                   {editing.id ? "Editar" : "Novo"} {tab.toLowerCase()}
                 </h2>
+                {editing.kind === "testimonial" && (
+                  <p className="notice">
+                    Publique somente relatos reais com autorização do cliente.
+                    Use o nome e o texto aprovados, sem acrescentar avaliações
+                    ou resultados.
+                  </p>
+                )}
                 <div className="form-grid">
                   <label>
-                    Título
+                    {editing.kind === "testimonial"
+                      ? "Nome autorizado do cliente"
+                      : "Título"}
                     <input
                       value={editing.title}
                       required
@@ -261,7 +272,9 @@ export default function AdminPanel({
                     />
                   </label>
                   <label>
-                    Categoria
+                    {editing.kind === "testimonial"
+                      ? "Contexto autorizado (ex.: ambiente do projeto)"
+                      : "Categoria"}
                     <input
                       list="categories"
                       value={editing.category}
@@ -284,9 +297,13 @@ export default function AdminPanel({
                   </label>
                 </div>
                 <label>
-                  Descrição
+                  {editing.kind === "testimonial"
+                    ? "Depoimento real autorizado (texto integral)"
+                    : "Descrição"}
                   <textarea
                     value={editing.description}
+                    required={editing.kind === "testimonial"}
+                    minLength={editing.kind === "testimonial" ? 10 : undefined}
                     maxLength={8000}
                     onChange={(e) => field("description", e.target.value)}
                   />

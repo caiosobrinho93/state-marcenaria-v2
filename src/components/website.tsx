@@ -2,10 +2,17 @@
 /* Uploaded media is validated by the server; native images allow any configured Supabase host. */
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
+import ScrollJourney from "./scroll-journey";
+import {
+  EndlessRibbon,
+  SpaceCards,
+  SignatureCards,
+  ProcessCards,
+  Testimonials,
+} from "./editorial-extras";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
-  ArrowDown,
   Menu,
   X,
   Plus,
@@ -83,50 +90,52 @@ export default function Website({
   const selectedItems = materials.filter((x) => selected.includes(x.id));
   const whatsapp = `https://wa.me/${settings.whatsapp}?text=${encodeURIComponent("Olá, State! Gostaria de conversar sobre um projeto de marcenaria." + (selectedItems.length ? "\nMateriais de interesse:\n" + selectedItems.map((x) => `${x.title}${x.reference ? " (" + x.reference + ")" : ""}`).join("\n") : ""))}`;
   useEffect(() => {
-    let cleanup = () => {};
     let disposed = false;
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    const connection = (
-      navigator as Navigator & { connection?: { saveData: boolean } }
-    ).connection;
-    if (reduced || connection?.saveData || window.innerWidth < 900) return;
+    let cleanup = () => {};
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     Promise.all([import("gsap"), import("gsap/ScrollTrigger")]).then(
       ([{ gsap }, { ScrollTrigger }]) => {
         if (disposed) return;
         gsap.registerPlugin(ScrollTrigger);
-        const mm = gsap.matchMedia();
-        mm.add("(min-width: 900px)", () => {
-          const ctx = gsap.context(() => {
-            gsap.to(".hero-visual", {
-              yPercent: 15,
+        const ctx = gsap.context(() => {
+          gsap.utils
+            .toArray<HTMLElement>(
+              ".section-heading, .about-copy, .craft-line, .studio-statement, .material-card, .signature-card, .process-card, .review-invitation",
+            )
+            .forEach((element) => {
+              gsap.fromTo(
+                element,
+                { y: 55 },
+                {
+                  y: 0,
+
+                  duration: 1.1,
+                  clearProps: "transform",
+                  ease: "power3.out",
+                  scrollTrigger: {
+                    trigger: element,
+                    start: "top 92%",
+                    toggleActions: "play none none none",
+                  },
+                },
+              );
+            });
+          gsap.fromTo(
+            ".about-image img",
+            { scale: 1.16 },
+            {
+              scale: 1,
               ease: "none",
               scrollTrigger: {
-                trigger: ".hero",
-                start: "top top",
+                trigger: ".about-image",
+                start: "top bottom",
                 end: "bottom top",
                 scrub: true,
               },
-            });
-            gsap.fromTo(
-              ".story-image",
-              { scale: 1.08 },
-              {
-                scale: 1,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: ".story",
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub: 1,
-                },
-              },
-            );
-          }, root);
-          return () => ctx.revert();
-        });
-        cleanup = () => mm.revert();
+            },
+          );
+        }, root);
+        cleanup = () => ctx.revert();
       },
     );
     return () => {
@@ -138,6 +147,16 @@ export default function Website({
     if (detail) dialog.current?.showModal();
     else dialog.current?.close();
   }, [detail]);
+  useEffect(() => {
+    const journey = root.current?.querySelector(".journey");
+    const header = root.current?.querySelector<HTMLElement>(".site-header");
+    if (!journey || !header) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      header.dataset.pastHero = String(!entry.isIntersecting);
+    });
+    observer.observe(journey);
+    return () => observer.disconnect();
+  }, []);
   function toggle(id: string) {
     setSelected((current) =>
       current.includes(id)
@@ -175,7 +194,7 @@ export default function Website({
     }
   }
   return (
-    <div ref={root}>
+    <div ref={root} className="site-v2">
       <a href="#conteudo" className="skip-link">
         Pular para o conteúdo
       </a>
@@ -208,138 +227,69 @@ export default function Website({
         </button>
       </header>
       <main id="conteudo">
-        <section className="hero">
-          <div className="hero-visual">
-            {settings.heroImage.startsWith("/images/") ? (
-              <Image
-                src={settings.heroImage}
-                alt="Ambiente com marcenaria em madeira natural e tons claros"
-                fill
-                priority
-                sizes="100vw"
-                quality={85}
-              />
-            ) : (
-              <img
-                src={settings.heroImage}
-                alt="Ambiente com marcenaria planejada"
-                fetchPriority="high"
-              />
-            )}
-          </div>
-          <div className="hero-shade" />
-          <div className="hero-content">
-            <p className="eyebrow">
-              <span className="gold-line" /> FEITO PARA SER SEU
-            </p>
-            <h1>{settings.heroTitle}</h1>
-            <p className="hero-description">{settings.heroDescription}</p>
-            <a className="button gold" href="#contato">
-              Conte sua ideia <ArrowUpRight size={19} />
-            </a>
-          </div>
-          <div className="hero-bottom">
-            <a href="#ambientes">
-              <ArrowDown size={17} /> Explore as possibilidades
-            </a>
-            <span>DESIGN QUE ACOLHE. DETALHES QUE FICAM.</span>
-            <span className="slide-count">
-              01 <i>/</i> 05
-            </span>
-          </div>
-        </section>
-        <div className="values-strip">
-          <span>Design autoral</span>
-          <i />
-          <span>Feito sob medida</span>
-          <i />
-          <span>Materiais selecionados</span>
-          <i />
-          <span>Cuidado em cada detalhe</span>
-        </div>
-        <section className="section story" id="ambientes">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">01 / POSSIBILIDADES</p>
-              <h2>
-                Seu jeito de viver.
-                <br />
-                <em>Em cada ambiente.</em>
-              </h2>
-            </div>
-            <p>
-              Do primeiro café ao descanso no fim do dia.
+        <ScrollJourney title={settings.heroTitle} />
+        <EndlessRibbon />
+        <section className="studio-intro section" id="ambientes">
+          <div className="studio-statement">
+            <p className="eyebrow">01 / ARQUITETURA DO COTIDIANO</p>
+            <h2>
+              Não é só sobre
               <br />
-              Marcenaria pensada para fazer parte da sua vida.
-            </p>
-          </div>
-          <div
-            className="environment-tabs"
-            role="tablist"
-            aria-label="Ambientes"
-          >
-            {environments.map(([name], i) => (
-              <button
-                role="tab"
-                aria-selected={active === i}
-                aria-controls="environment-panel"
-                id={`environment-tab-${i}`}
-                tabIndex={active === i ? 0 : -1}
-                onKeyDown={(e) => {
-                  if (
-                    ["ArrowRight", "ArrowLeft", "Home", "End"].includes(e.key)
-                  ) {
-                    e.preventDefault();
-                    const next =
-                      e.key === "Home"
-                        ? 0
-                        : e.key === "End"
-                          ? 4
-                          : (active + (e.key === "ArrowRight" ? 1 : 4)) % 5;
-                    setActive(next);
-                    document.getElementById(`environment-tab-${next}`)?.focus();
-                  }
-                }}
-                className={active === i ? "active" : ""}
-                key={name}
-                onClick={() => setActive(i)}
-              >
-                <span>0{i + 1}</span>
-                {name}
-              </button>
-            ))}
-          </div>
-          <div
-            className="environment-scene"
-            id="environment-panel"
-            role="tabpanel"
-            aria-labelledby={`environment-tab-${active}`}
-          >
-            <Image
-              className="story-image"
-              src={
-                active === 0
-                  ? "/images/hero.webp"
-                  : active === 1
-                    ? "/images/detail.webp"
-                    : "/images/space.webp"
-              }
-              alt="Referência visual de interiores e marcenaria"
-              fill
-              sizes="(max-width: 768px) 100vw, 90vw"
-            />
-            <div className="scene-shade" />
-            <div className="scene-copy" key={active}>
-              <p className="eyebrow">{environments[active][0]}</p>
-              <h3>{environments[active][1]}</h3>
-              <p>{environments[active][2]}</p>
-              <a href="#contato">
-                Vamos pensar no seu espaço <ArrowUpRight size={18} />
-              </a>
+              preencher espaços.
+              <br />
+              <em>É sobre fazer sentido.</em>
+            </h2>
+            <div className="studio-aside">
+              <span className="studio-mark">s.</span>
+              <p>
+                Uma casa não começa nas paredes.
+                <br />
+                Começa no seu jeito de viver.
+                <br />
+                Nós damos forma a isso.
+              </p>
             </div>
-            <span className="image-caption">
-              IMAGEM CONCEITUAL · REFERÊNCIA DE AMBIENTAÇÃO
-            </span>
+          </div>
+          <SpaceCards />
+          <div className="environment-list" aria-label="Ambientes">
+            {environments.map(([name, title, description], i) => (
+              <article
+                className={"craft-line " + (active === i ? "expanded" : "")}
+                key={name}
+              >
+                <button
+                  className="craft-toggle"
+                  aria-expanded={active === i}
+                  aria-controls={"craft-panel-" + i}
+                  onClick={() => setActive(active === i ? -1 : i)}
+                >
+                  <span className="craft-number">0{i + 1}</span>
+                  <h3>{name}</h3>
+                  <span className="craft-plus">{active === i ? "−" : "+"}</span>
+                </button>
+                <div
+                  id={"craft-panel-" + i}
+                  className="craft-panel"
+                  hidden={active !== i}
+                >
+                  <div>
+                    <h4>{title}</h4>
+                    <p>{description}</p>
+                    <a href="#contato">
+                      Imagine o seu <ArrowUpRight size={20} />
+                    </a>
+                  </div>
+                  <div className="craft-note">
+                    <span>SOB MEDIDA</span>
+                    <p>
+                      Do desenho ao acabamento.
+                      <br />
+                      Cada escolha, com intenção.
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
         <section className="about section" id="essencia">
@@ -355,9 +305,9 @@ export default function Website({
           <div className="about-copy">
             <p className="eyebrow">02 / NOSSA ESSÊNCIA</p>
             <h2>
-              Mais do que móveis.
+              Matéria, intenção.
               <br />
-              <em>Um jeito de pertencer.</em>
+              <em>E a sua história.</em>
             </h2>
             <p>{settings.about}</p>
             <div className="principles">
@@ -389,6 +339,7 @@ export default function Website({
             </div>
           </div>
         </section>
+        <SignatureCards />
         <section className="materials section" id="materiais">
           <div className="section-heading">
             <div>
@@ -501,11 +452,17 @@ export default function Website({
                 .includes(search.toLowerCase()),
           ) && (
             <div className="empty-state">
-              <span className="sample-lines">≋</span>
+              <div className="material-palette" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
               <h3>
                 {materials.length
                   ? "Nenhum material encontrado."
-                  : "Sua escolha começa com uma conversa."}
+                  : "O primeiro detalhe é a sua escolha."}
               </h3>
               <p>
                 {materials.length
@@ -601,6 +558,8 @@ export default function Website({
             </div>
           )}
         </section>
+        <ProcessCards />
+        <Testimonials entries={entries} phone={settings.whatsapp} />
         {settings.heroVideo && (
           <section className="section">
             <h2>Um olhar sobre os ambientes.</h2>
@@ -648,7 +607,7 @@ export default function Website({
             {!backendReady && (
               <p className="notice">
                 O formulário está em preparação. Por enquanto, envie sua ideia
-                pelo WhatsApp ao lado.
+                pelo WhatsApp.
               </p>
             )}
             <label>

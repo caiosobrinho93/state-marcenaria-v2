@@ -18,7 +18,7 @@ Sem Supabase, o website exibe conteúdo editorial e imagens conceituais; o catá
 ## Ativar Supabase
 
 1. Crie um projeto Supabase.
-2. Execute **supabase/migrations/001_initial.sql** no SQL Editor. A migração cria tabelas, índices, funções, políticas RLS e bucket `media`.
+2. Execute **supabase/migrations/001_initial.sql** e depois **002_testimonials.sql** no SQL Editor. As migrações criam tabelas, índices, funções, políticas RLS, bucket `media` e suporte a depoimentos autorizados.
 3. Em Project Settings/API, copie a URL e a **publishable key** para `.env.local`. Não use `service_role` nem secret key.
 4. Em Authentication/Users, crie um usuário com e-mail confirmado e senha forte. Desative cadastro público se não for necessário.
 5. Copie o UUID desse usuário e execute no SQL Editor:
@@ -60,6 +60,8 @@ Playwright usa Chrome instalado no Windows e Chromium no CI. Em outras máquinas
 Leia **TEST_REPORT.md** para resultados e limites, e **supabase/VERIFICATION.md** para o roteiro obrigatório após conectar o banco. O teste de desempenho não garante métricas reais de usuários.
 
 ## Organização
+
+Hero atual: os 60 frames fornecidos são controlados pela rolagem, inclusive no mobile. `scripts/prepare-sequence.mjs` gera as variantes otimizadas a partir da pasta original. A preferência de movimento reduzido usa uma imagem estática. A faixa de texto em loop tem botão de pausa. Na seção de depoimentos, somente cadastros publicados no painel aparecem como relatos; sem conteúdo real, há um convite para compartilhar a experiência.
 
 - `src/app`: rotas, metadados, Server Actions.
 - `src/components`: website, login e painel.

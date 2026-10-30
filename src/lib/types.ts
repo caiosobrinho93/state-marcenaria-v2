@@ -1,6 +1,6 @@
 export type Entry = {
   id: string;
-  kind: "material" | "project" | "category" | "manufacturer";
+  kind: "material" | "project" | "category" | "manufacturer" | "testimonial";
   title: string;
   category: string;
   description: string;
