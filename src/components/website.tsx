@@ -4,7 +4,6 @@
 import Image from "next/image";
 import ScrollJourney from "./scroll-journey";
 import {
-  EndlessRibbon,
   SpaceCards,
   SignatureCards,
   ProcessCards,
@@ -206,8 +205,7 @@ export default function Website({
           {[
             ["Ambientes", "ambientes"],
             ["Nossa essência", "essencia"],
-            ["Materiais", "materiais"],
-            ["Portfólio", "portfolio"],
+            ["Contato", "contato"],
           ].map(([label, id]) => (
             <a key={id} href={"#" + id} onClick={() => setMenu(false)}>
               {label}
@@ -228,7 +226,6 @@ export default function Website({
       </header>
       <main id="conteudo">
         <ScrollJourney title={settings.heroTitle} />
-        <EndlessRibbon />
         <section className="studio-intro section" id="ambientes">
           <div className="studio-statement">
             <p className="eyebrow">01 / ARQUITETURA DO COTIDIANO</p>

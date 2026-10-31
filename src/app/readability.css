@@ -523,3 +523,13 @@
     font-size: 14px;
   }
 }
+/* Versão enxuta: foco em ambientes, essência e contato. */
+.site-v2 #materiais,
+.site-v2 #portfolio,
+.site-v2 #depoimentos,
+.site-v2 .signature-section,
+.site-v2 .process-section,
+.site-v2 section:has(> video) {
+  display: none !important;
+}
+
