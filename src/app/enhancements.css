@@ -476,6 +476,35 @@
   color: #c4cdb6;
   margin-top: 5px;
 }
+
+.testimonial-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.testimonial-dots button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(41, 53, 34, .25);
+  cursor: pointer;
+  transition: width .3s ease, background .3s ease;
+}
+
+.testimonial-dots button.is-active {
+  width: 28px;
+  background: var(--ink);
+}
+
+@media (min-width: 721px) {
+  .testimonial-carousel .testimonial-card:not(.is-active) {
+    display: none;
+  }
+}
 @media (max-width: 1000px) {
   .space-photo {
     height: 250px;

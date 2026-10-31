@@ -232,6 +232,7 @@ export function Testimonials({
   entries: Entry[];
   phone: string;
 }) {
+  const [activeReview, setActiveReview] = useState(0);
   const reviews = entries.filter(
     (e) => e.kind === "testimonial" && e.published && e.description.trim(),
   );
@@ -254,9 +255,10 @@ export function Testimonials({
         </p>
       </div>
       {reviews.length ? (
-        <div className="testimonial-grid">
-          {reviews.map((review) => (
-            <figure className="testimonial-card" key={review.id}>
+        <>
+        <div className="testimonial-grid testimonial-carousel" aria-live="polite">
+          {reviews.map((review, index) => (
+            <figure className={`testimonial-card ${index === activeReview ? "is-active" : ""}`} key={review.id}>
               <Quote size={34} strokeWidth={1} />
               <blockquote>{review.description}</blockquote>
               <figcaption>
@@ -271,6 +273,21 @@ export function Testimonials({
             </figure>
           ))}
         </div>
+        {reviews.length > 1 && (
+          <div className="testimonial-dots" aria-label="Selecionar depoimento">
+            {reviews.map((review, index) => (
+              <button
+                key={review.id}
+                type="button"
+                className={index === activeReview ? "is-active" : ""}
+                aria-label={`Mostrar depoimento ${index + 1}`}
+                aria-pressed={index === activeReview}
+                onClick={() => setActiveReview(index)}
+              />
+            ))}
+          </div>
+        )}
+        </>
       ) : (
         <div className="review-invitation">
           <div className="review-symbol" aria-hidden="true">
